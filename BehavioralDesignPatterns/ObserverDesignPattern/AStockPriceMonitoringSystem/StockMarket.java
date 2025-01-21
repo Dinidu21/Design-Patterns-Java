@@ -1,4 +1,4 @@
-package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem;
+package BehavioralDesignPatterns.ObserverDesignPattern.AStockPriceMonitoringSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,13 +1,14 @@
-package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem;
+package BehavioralDesignPatterns.ObserverDesignPattern.AStockPriceMonitoringSystem;
 
-import BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.DesktopClient;
-import BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.MobileClient;
-import BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.WebClient;
+
+import BehavioralDesignPatterns.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.DesktopClient;
+import BehavioralDesignPatterns.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.MobileClient;
+import BehavioralDesignPatterns.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.WebClient;
 
 public class MainApp {
     public static void main(String[] args) {
         //Create the StockMarket object
-        StockMarket stockMarket = new StockMarket();
+       StockMarket stockMarket = new StockMarket();
 
         //Create the observers
         Observer mobileClient = new MobileClient();

@@ -1,9 +1,8 @@
-package ObserverDesignPattern.AStockPriceMonitoringSystem;
+package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem;
 
-import ObserverDesignPattern.AStockPriceMonitoringSystem.clients.DesktopClient;
-import ObserverDesignPattern.AStockPriceMonitoringSystem.clients.MobileClient;
-import ObserverDesignPattern.AStockPriceMonitoringSystem.clients.WebClient;
-import ObserverDesignPattern.AStockPriceMonitoringSystem.Observer;
+import BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.DesktopClient;
+import BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.MobileClient;
+import BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem.clients.WebClient;
 
 public class MainApp {
     public static void main(String[] args) {

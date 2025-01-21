@@ -1,4 +1,4 @@
-package ObserverDesignPattern.StockPriceMonitoringSystem;
+package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem;
 
 /**
  * An interface for objects that want to be notified of stock price updates.

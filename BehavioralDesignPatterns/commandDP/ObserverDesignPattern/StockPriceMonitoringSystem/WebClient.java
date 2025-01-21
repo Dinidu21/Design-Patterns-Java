@@ -1,4 +1,4 @@
-package ObserverDesignPattern.StockPriceMonitoringSystem;
+package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.StockPriceMonitoringSystem;
 /**
  * A web client that implements the Observer interface.
  * It receives updates from the stock market and prints them to the console.

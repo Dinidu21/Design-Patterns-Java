@@ -1,4 +1,4 @@
-package commandDP;
+package BehavioralDesignPatterns.commandDP;
 
 public class Oven {
     private String name;

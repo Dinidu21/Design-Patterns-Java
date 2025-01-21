@@ -1,6 +1,4 @@
-package ObserverDesignPattern.AStockPriceMonitoringSystem;
-
-import ObserverDesignPattern.AStockPriceMonitoringSystem.Observer;
+package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.AStockPriceMonitoringSystem;
 
 /**
  * The Subject interface defines the methods that the Observers use to receive updates from the Subject.

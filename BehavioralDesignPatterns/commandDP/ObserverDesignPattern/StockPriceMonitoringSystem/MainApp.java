@@ -1,4 +1,4 @@
-package ObserverDesignPattern.StockPriceMonitoringSystem;
+package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.StockPriceMonitoringSystem;
 
 public class MainApp {
     public static void main(String[] args) {

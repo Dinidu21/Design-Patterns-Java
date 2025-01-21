@@ -1,6 +1,4 @@
-package ObserverDesignPattern.AStockPriceMonitoringSystem.clients;
-
-import ObserverDesignPattern.AStockPriceMonitoringSystem.Observer;
+package BehavioralDesignPatterns.commandDP.ObserverDesignPattern.StockPriceMonitoringSystem;
 
 /**
  * A mobile client that implements the Observer interface.

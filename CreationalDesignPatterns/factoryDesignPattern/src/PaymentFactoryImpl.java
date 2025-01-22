@@ -3,9 +3,9 @@ import customExceptions.PaymentException;
 import model.CreditCardDetailsDTO;
 import model.PayPalDetailsDTO;
 
-public class PaymentFactoryImpl implements PaymentFactory{
+public class PaymentFactoryImpl implements PaymentFactory {
     @Override
-    public Payment createPayment(PaymentType type, Object paymentDetails) throws PaymentException {
+    public <T> Payment createPayment(PaymentType type, T paymentDetails) throws PaymentException {
         return switch (type) {
             case CREDIT_CARD -> {
                 if (!(paymentDetails instanceof CreditCardDetailsDTO)) {

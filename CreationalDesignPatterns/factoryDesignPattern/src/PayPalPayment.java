@@ -1,40 +1,38 @@
 import custom.PaymentStatus;
 import customExceptions.PaymentException;
-import model.CreditCardDetailsDTO;
+import model.PayPalDetailsDTO;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CreditCardPayment implements Payment{
-    private CreditCardDetailsDTO cardDetails;
-    private Map<String,PaymentStatus> transactions;
+public class PayPalPayment implements Payment{
+    private PayPalDetailsDTO payPalDetails;
+    private Map<String, PaymentStatus> transactions;
 
-    public CreditCardPayment(CreditCardDetailsDTO cardDetails) {
-        this.cardDetails = cardDetails;
+    public PayPalPayment(PayPalDetailsDTO payPalDetails) {
+        this.payPalDetails = payPalDetails;
         this.transactions = new HashMap<>();
     }
 
-
     @Override
     public boolean validatePayment() throws PaymentException {
-        if(!cardDetails.isValid()){
-            throw new PaymentException("Invalid card details");
+        if (!payPalDetails.isValid()) {
+            throw new PaymentException("Invalid PayPal details");
         }
-        // Additional validation logic (Luhn algorithm, etc.)
         return true;
     }
 
     @Override
     public PaymentStatus processPayment(double amount) throws PaymentException {
-        if(amount <= 0){
+        if (amount <= 0) {
             throw new PaymentException("Invalid amount");
         }
 
-        if(validatePayment()){
+        if (validatePayment()) {
             String transactionId = generateTransactionId();
-            // Process payment with credit card gateway
-            PaymentStatus paymentStatus = processWithGateway(amount);
+            // Process payment with PayPal API
+            PaymentStatus paymentStatus = processWithPayPalAPI(amount);
             transactions.put(transactionId, paymentStatus);
             return paymentStatus;
         }
@@ -52,7 +50,7 @@ public class CreditCardPayment implements Payment{
             throw new PaymentException("Cannot refund unsuccessful transaction");
         }
 
-        // Process refund with gateway
+        // Process refund with PayPal API
         transactions.put(transactionId, PaymentStatus.REFUNDED);
         return PaymentStatus.REFUNDED;
     }
@@ -66,8 +64,8 @@ public class CreditCardPayment implements Payment{
         return UUID.randomUUID().toString();
     }
 
-    private PaymentStatus processWithGateway(double amount) {
-        // Real implementation would integrate with a payment gateway
+    private PaymentStatus processWithPayPalAPI(double amount) {
+        // Real implementation would integrate with PayPal API
         return PaymentStatus.SUCCESSFUL;
     }
 }

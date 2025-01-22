@@ -1,6 +1,12 @@
+package service;
+
 import custom.PaymentStatus;
 import custom.PaymentType;
 import customExceptions.PaymentException;
+import factory.Payment;
+import factory.PaymentFactory;
+import factory.PaymentFactoryImpl;
+import factory.PaymentResult;
 import model.CreditCardDetailsDTO;
 import model.PayPalDetailsDTO;
 
@@ -9,7 +15,7 @@ public class PaymentService {
         PaymentFactory paymentFactory = new PaymentFactoryImpl();
 
         try {
-            // Process Credit Card Payment
+            // Process Credit Card factory.Payment
             CreditCardDetailsDTO cardDetails = new CreditCardDetailsDTO(
                     "1234567890123456",
                     "12/25",
@@ -31,7 +37,7 @@ public class PaymentService {
                 handleRefundStatus(refundStatus);
             }
 
-            // Process PayPal Payment
+            // Process PayPal factory.Payment
             PayPalDetailsDTO paypalDetails = new PayPalDetailsDTO(
                     "dinidu@example.com",
                     "token123"

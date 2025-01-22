@@ -1,7 +1,11 @@
+package factory;
+
 import custom.PaymentType;
 import customExceptions.PaymentException;
 import model.CreditCardDetailsDTO;
 import model.PayPalDetailsDTO;
+import payment.CreditCardPayment;
+import payment.PayPalPayment;
 
 public class PaymentFactoryImpl implements PaymentFactory {
     @Override

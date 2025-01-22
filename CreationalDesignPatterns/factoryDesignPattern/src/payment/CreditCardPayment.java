@@ -1,12 +1,16 @@
+package payment;
+
 import custom.PaymentStatus;
 import customExceptions.PaymentException;
+import factory.Payment;
+import factory.PaymentResult;
 import model.CreditCardDetailsDTO;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CreditCardPayment implements Payment{
+public class CreditCardPayment implements Payment {
     private final CreditCardDetailsDTO cardDetails;
     private final Map<String,PaymentStatus> transactions;
 
@@ -37,8 +41,8 @@ public class CreditCardPayment implements Payment{
             PaymentStatus paymentStatus = processWithGateway(amount);
             transactions.put(transactionId, paymentStatus);
 
-            System.out.println("\nPayment Type   : "+getClass().getName());
-            System.out.println("Payment Status : " + paymentStatus);
+            System.out.println("\nfactory.Payment Type   : "+getClass().getName());
+            System.out.println("factory.Payment Status : " + paymentStatus);
             System.out.println("Transaction Id : " + transactionId);
 
             return new PaymentResult(transactionId, paymentStatus);

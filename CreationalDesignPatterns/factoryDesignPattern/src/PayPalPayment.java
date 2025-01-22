@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PayPalPayment implements Payment{
-    private PayPalDetailsDTO payPalDetails;
-    private Map<String, PaymentStatus> transactions;
+    private final PayPalDetailsDTO payPalDetails;
+    private final Map <String, PaymentStatus> transactions;
 
     public PayPalPayment(PayPalDetailsDTO payPalDetails) {
         this.payPalDetails = payPalDetails;
-        this.transactions = new HashMap<>();
+        transactions = new HashMap<>();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class PayPalPayment implements Payment{
     }
 
     @Override
-    public PaymentStatus processPayment(double amount) throws PaymentException {
+    public PaymentResult processPayment(double amount) throws PaymentException {
         if (amount <= 0) {
             throw new PaymentException("Invalid amount");
         }
@@ -34,10 +34,15 @@ public class PayPalPayment implements Payment{
             // Process payment with PayPal API
             PaymentStatus paymentStatus = processWithPayPalAPI(amount);
             transactions.put(transactionId, paymentStatus);
-            return paymentStatus;
+
+            System.out.println("\nPayment Type   : "+getClass().getName());
+            System.out.println("Payment Status : " + paymentStatus);
+            System.out.println("Transaction Id : " + transactionId);
+
+            return new PaymentResult(transactionId, paymentStatus);
         }
 
-        return PaymentStatus.FAILED;
+        return new PaymentResult(null, PaymentStatus.FAILED);
     }
 
     @Override
@@ -53,11 +58,6 @@ public class PayPalPayment implements Payment{
         // Process refund with PayPal API
         transactions.put(transactionId, PaymentStatus.REFUNDED);
         return PaymentStatus.REFUNDED;
-    }
-
-    @Override
-    public PaymentStatus getPaymentStatus(String transactionId) {
-        return transactions.getOrDefault(transactionId, PaymentStatus.PENDING);
     }
 
     private String generateTransactionId() {

@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class CreditCardPayment implements Payment{
-    private CreditCardDetailsDTO cardDetails;
-    private Map<String,PaymentStatus> transactions;
+    private final CreditCardDetailsDTO cardDetails;
+    private final Map<String,PaymentStatus> transactions;
 
     public CreditCardPayment(CreditCardDetailsDTO cardDetails) {
         this.cardDetails = cardDetails;
@@ -26,7 +26,7 @@ public class CreditCardPayment implements Payment{
     }
 
     @Override
-    public PaymentStatus processPayment(double amount) throws PaymentException {
+    public PaymentResult processPayment(double amount) throws PaymentException {
         if(amount <= 0){
             throw new PaymentException("Invalid amount");
         }
@@ -36,10 +36,15 @@ public class CreditCardPayment implements Payment{
             // Process payment with credit card gateway
             PaymentStatus paymentStatus = processWithGateway(amount);
             transactions.put(transactionId, paymentStatus);
-            return paymentStatus;
+
+            System.out.println("\nPayment Type   : "+getClass().getName());
+            System.out.println("Payment Status : " + paymentStatus);
+            System.out.println("Transaction Id : " + transactionId);
+
+            return new PaymentResult(transactionId, paymentStatus);
         }
 
-        return PaymentStatus.FAILED;
+        return new PaymentResult(null, PaymentStatus.FAILED);
     }
 
     @Override
@@ -55,11 +60,6 @@ public class CreditCardPayment implements Payment{
         // Process refund with gateway
         transactions.put(transactionId, PaymentStatus.REFUNDED);
         return PaymentStatus.REFUNDED;
-    }
-
-    @Override
-    public PaymentStatus getPaymentStatus(String transactionId) {
-        return transactions.getOrDefault(transactionId, PaymentStatus.PENDING);
     }
 
     private String generateTransactionId() {
